@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="简单、实用、免费的在线工具集合。">
+  <title>小工具集 — 免费在线工具</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="小工具集首页">
+      <span class="brand-mark">✳</span>
+      <span>小工具集</span>
+    </a>
+    <nav><a href="#tools">全部工具</a><a href="#about">关于本站</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow"><span class="pulse"></span> 简单 · 免费 · 即开即用</p>
+      <h1>把琐碎的小事，<br><em>交给顺手的工具。</em></h1>
+      <p class="hero-copy">一组轻量、实用的在线工具。无需安装，打开网页就能使用。新工具会持续加入。</p>
+      <a class="primary-button" href="#tools">探索工具 <span aria-hidden="true">↘</span></a>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="float-card card-json"><span class="mini-icon purple">{ }</span><span><b>JSON 格式化</b><small>清晰 · 可读 · 易检查</small></span></div>
+        <div class="float-card card-text"><span class="mini-icon orange">Aa</span><span><b>文本统计</b><small>字符 · 单词 · 行数</small></span></div>
+        <div class="spark spark-one">✦</div><div class="spark spark-two">✳</div>
+      </div>
+    </section>
+
+    <section class="tools-section" id="tools">
+      <div class="section-heading">
+        <div><p class="eyebrow">工具目录 / TOOLBOX</p><h2>今天需要哪一个？</h2></div>
+        <span class="tool-count">当前上线 <b>02</b> 个工具</span>
+      </div>
+      <div class="tool-grid">
+        <article class="tool-card">
+          <div class="tool-card-top"><span class="tool-icon purple">{ }</span><span class="tag">开发效率</span></div>
+          <h3>JSON 格式化</h3>
+          <p>整理压缩的 JSON，检查语法错误，并快速复制格式化结果。</p>
+          <button class="text-button" data-open="json-tool">立即使用 <span>↗</span></button>
+        </article>
+        <article class="tool-card">
+          <div class="tool-card-top"><span class="tool-icon orange">Aa</span><span class="tag">文字处理</span></div>
+          <h3>文本统计</h3>
+          <p>实时统计字符数、非空字符、单词数和行数，适合快速检查文案。</p>
+          <button class="text-button" data-open="text-tool">立即使用 <span>↗</span></button>
+        </article>
+        <article class="tool-card coming-card">
+          <div class="tool-card-top"><span class="tool-icon green">⌘</span><span class="tag">即将加入</span></div>
+          <h3>更多工具，持续上新</h3>
+          <p>图片处理、二维码生成、日期计算，以及未来可接入的 AI 工具。</p>
+          <span class="muted-note">正在规划中</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="tool-workspace" id="json-tool" hidden>
+      <div class="workspace-heading"><div><p class="eyebrow">TOOL 01</p><h2>JSON 格式化</h2></div><button class="close-button" data-close aria-label="关闭工具">×</button></div>
+      <label for="json-input">输入 JSON</label>
+      <textarea id="json-input" rows="7" spellcheck="false" placeholder='{"hello":"world","items":[1,2,3]}'></textarea>
+      <div class="button-row"><button class="primary-button small" id="format-json">格式化并验证</button><button class="secondary-button" id="minify-json">压缩 JSON</button><button class="secondary-button" id="copy-json">复制结果</button></div>
+      <p class="status" id="json-status" role="status">内容仅在当前浏览器中处理。</p>
+      <label for="json-output">结果</label>
+      <textarea id="json-output" rows="7" spellcheck="false" placeholder="格式化后的结果会显示在这里"></textarea>
+    </section>
+
+    <section class="tool-workspace" id="text-tool" hidden>
+      <div class="workspace-heading"><div><p class="eyebrow">TOOL 02</p><h2>文本统计</h2></div><button class="close-button" data-close aria-label="关闭工具">×</button></div>
+      <label for="text-input">粘贴或输入文本</label>
+      <textarea id="text-input" rows="8" placeholder="在这里输入或粘贴你的文本……"></textarea>
+      <div class="stats-grid">
+        <div class="stat"><span>字符数（含空格）</span><b id="stat-chars">0</b></div>
+        <div class="stat"><span>非空字符</span><b id="stat-no-space">0</b></div>
+        <div class="stat"><span>单词数</span><b id="stat-words">0</b></div>
+        <div class="stat"><span>行数</span><b id="stat-lines">0</b></div>
+      </div>
+      <p class="status">统计在本地实时完成，不会上传文本。</p>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-symbol">✳</div>
+      <div><p class="eyebrow">小而有用</p><h2>工具应该简单，<br>也应该让人放心。</h2></div>
+      <p>当前工具无需登录。JSON 与文本统计均在你的浏览器本地运行。后续接入 AI 或云端 API 时，会明确说明数据如何处理。</p>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">✳</span><span>小工具集</span></a><span>轻一点，快一点。© <span id="year"></span></span><a href="#tools">回到工具 ↑</a></footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>
