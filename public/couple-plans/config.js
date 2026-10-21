@@ -1,7 +1,8 @@
-// Public browser configuration. Copy project URL and PUBLISHABLE / ANON key here.
-// Never paste the service_role key, JWT signing secret, or database password.
+// Configure with your existing Supabase project and PUBLIC publishable/anon key.
+// 'proxy' routes requests through this site's /api/* Cloudflare Pages Function.
+// 'direct' connects to Supabase directly (rollback / troubleshooting).
 window.OLP_CONFIG = {
-  supabaseUrl: 'https://orebtevjewekfmexjsbm.supabase.co',
-  publishableKey: 'sb_publishable_TtT0W4v6MB3Lk7P-AZ65fw_hYhEu5dD',
-  syncIntervalMs: 8000
+  supabaseUrl: 'https://YOUR_PROJECT.supabase.co',
+  publishableKey: 'sb_publishable_YOUR_PUBLIC_KEY',
+  apiMode: 'proxy'
 };

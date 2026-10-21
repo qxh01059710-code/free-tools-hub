@@ -5,9 +5,12 @@
 (() => {
 'use strict';
 const C=window.OLP_CONFIG||{};
+const proxyMode=C.apiMode==='proxy';
 const configured=/^https:\/\/[a-z0-9.-]+\.supabase\.co\/?$/i.test(C.supabaseUrl||'')&&
   /^((sb_publishable_|eyJ)[A-Za-z0-9_.-]+)$/.test(C.publishableKey||'');
-const base=(C.supabaseUrl||'').replace(/\/$/,'');
+const base=proxyMode?location.origin:(C.supabaseUrl||'').replace(/\/$/,'');
+const apiPrefix=proxyMode?'/api':'';
+const apiURL=path=>base+apiPrefix+path;
 const el=id=>document.getElementById(id);
 const enc=s=>encodeURIComponent(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
@@ -28,7 +31,7 @@ function setSession(s){session=s?.access_token?s:null;try{session?localStorage.s
 function sessionHeaders(auth=true){const h={'apikey':C.publishableKey};if(auth&&session?.access_token)h.Authorization='Bearer '+session.access_token;return h}
 async function fetchJSON(path,{method='GET',body,auth=true,returnRows=false,headers={}}={},retry=true){
  const h={...sessionHeaders(auth),...headers};if(body!==undefined)h['content-type']='application/json';if(returnRows)h.Prefer='return=representation';
- const response=await fetch(base+path,{method,headers:h,body:body===undefined?undefined:JSON.stringify(body),cache:'no-store'});
+ const response=await fetch(apiURL(path),{method,headers:h,body:body===undefined?undefined:JSON.stringify(body),cache:'no-store'});
  if(response.status===401&&auth&&retry&&session?.refresh_token){await refreshSession();return fetchJSON(path,{method,body,auth,returnRows,headers},false)}
  let parsed;const raw=await response.text();try{parsed=raw?JSON.parse(raw):null}catch{parsed=null}
  if(!response.ok)throw Error(parsed?.msg||parsed?.error_description||parsed?.message||parsed?.error||`请求失败 (${response.status})`);
@@ -174,12 +177,12 @@ function forceReadAll(){return Promise.all(data.notifications.filter(n=>!n.is_re
 async function uploadAsset(eventId,file){if(!file||!file.size)throw Error('请选择图片');if(file.size>3*1024*1024)throw Error('图片不能超过 3MB');
  const ext=({"image/jpeg":"jpg","image/png":"png","image/webp":"webp"})[file.type];if(!ext)throw Error('仅支持 JPG、PNG 或 WebP 图片');
  const uuid=crypto.randomUUID();const path=`${eventId}/${uuid}.${ext}`;
- const response=await fetch(`${base}/storage/v1/object/couple-private/${path}`,{method:'POST',headers:{...sessionHeaders(),'content-type':file.type,'cache-control':'3600','x-upsert':'false'},body:file});
+ const response=await fetch(apiURL(`/storage/v1/object/couple-private/${path}`),{method:'POST',headers:{...sessionHeaders(),'content-type':file.type,'cache-control':'3600','x-upsert':'false'},body:file});
  if(response.status===401){await refreshSession();throw Error('登录凭证刚更新，请重试上传')}
  if(!response.ok){const j=await response.json().catch(()=>({}));throw Error(j.message||'图片上传失败')}
  return path;
 }
-async function assetURL(path){if(blobs.has(path))return blobs.get(path);const response=await fetch(`${base}/storage/v1/object/authenticated/couple-private/${path}`,{headers:sessionHeaders(),cache:'no-store'});if(!response.ok)throw Error('图片暂不可访问');const obj=URL.createObjectURL(await response.blob());blobs.set(path,obj);return obj}
+async function assetURL(path){if(blobs.has(path))return blobs.get(path);const response=await fetch(apiURL(`/storage/v1/object/authenticated/couple-private/${path}`),{headers:sessionHeaders(),cache:'no-store'});if(!response.ok)throw Error('图片暂不可访问');const obj=URL.createObjectURL(await response.blob());blobs.set(path,obj);return obj}
 function hydrateAssets(){for(const image of document.querySelectorAll('img[data-asset]')){const path=image.dataset.asset;assetURL(path).then(src=>{if(image.isConnected)image.src=src}).catch(()=>{image.alt='图片暂不可访问'})}}
 function formatEditor(cmd){const e=el('noteEditor');if(!e)return;if(cmd==='createLink'){const href=prompt('请输入 HTTPS 链接');if(href&&/^https:\/\//i.test(href))document.execCommand('createLink',false,href)}else document.execCommand(cmd,false,null);e.dataset.dirty='1';updateDirty()}
 function updateDirty(){const hint=el('saveHint');if(hint)hint.textContent='存在未保存的修改';clearTimeout(saveTimer);saveTimer=setTimeout(()=>saveNote().catch(()=>{}),1400)}
