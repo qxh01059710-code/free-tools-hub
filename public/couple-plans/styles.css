@@ -141,3 +141,304 @@ pre, code, .share-code, .mono { overflow-wrap: anywhere; }
   .score-grid { gap: 9px; }
   .score-card { padding: 14px; }
 }
+
+
+/* V2.0 — calendar, schedule, memories, responsive task interactions */
+.sync-warning{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:0 0 16px;padding:12px 15px;border-radius:12px;border:1px solid #ead4b1;background:#fff9ed;color:#795d30;font-size:13px}
+.sync-warning .btn{margin-left:auto}
+.home-quick-links{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 18px}
+.home-quick-links button{border:1px solid #dde8df;background:#fff;color:#456e5c;border-radius:14px;padding:12px 14px;font-size:13px;font-weight:600;min-height:44px}
+.home-quick-links button:hover,.home-quick-links button:focus-visible{border-color:#96bbab;background:#eff7f1}
+.calendar-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(275px,.85fr);gap:18px;align-items:start}
+.calendar-aside{display:flex;flex-direction:column;gap:18px;min-width:0}
+.calendar-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px}
+.calendar-toolbar h2{margin:0;font-size:19px;letter-spacing:.02em}
+.calendar-actions{display:flex;gap:6px}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.calendar-weekday{text-align:center;font-size:12px;color:#89978b;padding:5px 0 10px}
+.calendar-day{min-width:0;min-height:80px;display:flex;align-items:center;flex-direction:column;gap:5px;padding:9px 2px;border:1px solid #edf0eb;border-radius:10px;background:#fff;color:#3f5045;font-size:14px;position:relative;transition:background .15s,border-color .15s}
+.calendar-day:hover{background:#f0f6f2;border-color:#bacdc1}
+.calendar-day.is-outside{background:#f9faf9;color:#bac3b9}
+.calendar-day.is-selected{background:#edf6f0;border-color:#5f9d83;box-shadow:inset 0 0 0 1px #5f9d83;font-weight:700}
+.calendar-day.is-today>span:first-child{color:#fff;background:#3b866f;border-radius:50%;width:27px;height:27px;display:grid;place-items:center;margin-top:-5px;margin-bottom:-2px}
+.calendar-day small{font-size:10px;color:#718875}
+.day-markers{display:flex;align-items:center;gap:4px;min-height:8px}
+.dot-event,.dot-task{display:inline-block;width:7px;height:7px;border-radius:50%;background:#bf7d77;flex:none}
+.dot-task{background:#68a6a1}
+.calendar-legend{display:flex;gap:17px;margin-top:15px;font-size:11px;color:#7d8c82}
+.calendar-legend>span{display:flex;gap:6px;align-items:center}
+.agenda-item,.reminder-row{width:100%;border:0;border-bottom:1px solid #eef2ee;background:transparent;display:flex;gap:11px;align-items:center;padding:12px 3px;text-align:left;color:#44594a}
+.agenda-item:last-child,.reminder-row:last-child{border-bottom:0}
+.agenda-item>span:nth-child(2),.reminder-row>span:nth-child(2){min-width:0;flex:1}
+.agenda-item strong,.reminder-row strong{display:block;font-size:13px;overflow-wrap:anywhere}
+.agenda-item small,.reminder-row small{display:block;font-size:11px;color:#8a988e;margin-top:5px;line-height:1.5}
+.agenda-item .ic,.reminder-row .ic{width:16px;height:16px;color:#8aa194}
+.agenda-symbol{width:33px;height:33px;flex:none;border-radius:10px;display:grid;place-items:center;background:#f3ece9;color:#b67672}
+.reminder-date{min-width:44px;border-radius:9px;background:#e9f1ec;padding:9px 5px;color:#3f806b;text-align:center;font-size:12px;font-weight:700}
+.task-tools{display:flex;flex-direction:column;gap:12px;margin:0 0 18px}
+.task-tools .search-field{flex:unset;width:100%}
+.task-filters,.memory-filter{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:17px}
+.task-filters{margin:0}
+.task-filters button,.memory-filter button{border:1px solid #e1e9e3;border-radius:20px;padding:9px 13px;background:white;color:#657468;font-size:12px;min-height:40px}
+.task-filters button.active,.memory-filter button.active{background:#397f72;border-color:#397f72;color:white}
+.task-filters button small{opacity:.75;padding-left:4px}
+.event-date-line{font-size:12px!important;color:#407b6a!important;margin:11px 0!important}
+.checkbox-field{display:flex;align-items:center;gap:9px;color:#607669;font-size:13px}
+.checkbox-field input{width:18px;height:18px;accent-color:#397f72}
+.memory-intro{display:flex;align-items:center;justify-content:space-between;gap:20px;border-radius:18px;margin-bottom:20px;padding:26px;background:linear-gradient(115deg,#e8f0e9,#f5e8e5)}
+.memory-intro h2{font-size:20px;line-height:1.5;margin:8px 0}
+.memory-intro p{color:#6e8072;font-size:13px;margin:0;line-height:1.7}
+.memory-intro>strong{font-size:37px;color:#397f72;white-space:nowrap}
+.memory-intro>strong small{font-size:13px;color:#6f8175}
+.memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:19px}
+.memory-card{overflow:hidden;min-width:0}
+.memory-cover{height:190px;width:100%}
+.memory-body{padding:22px}
+.memory-kicker{font-size:11px;color:#9a7a73}
+.memory-body h3{font-size:19px;margin:9px 0 8px;line-height:1.4}
+.memory-body>p{font-size:13px;line-height:1.7;color:#7c8b7f;min-height:43px}
+.memory-stats{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:#5b8a72;margin:13px 0}
+.memory-quote{margin:15px 0;background:#f6f7f2;border-radius:10px;padding:14px;font-size:12px;line-height:1.7;color:#7c8377;overflow-wrap:anywhere}
+.memory-disclaimer{margin-top:20px;font-size:11px;line-height:1.7}
+@media(max-width:1050px){.calendar-layout{grid-template-columns:1fr}.memory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){
+ .home-quick-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .home-quick-links button{font-size:12px;padding:11px 9px}
+ .calendar-layout,.memory-grid{grid-template-columns:1fr}
+ .calendar-day{min-height:61px;font-size:13px;padding:8px 1px;gap:3px}
+ .calendar-day small{font-size:9px}
+ .calendar-toolbar h2{font-size:17px}
+ .calendar-grid{gap:3px}
+ .calendar-legend{flex-wrap:wrap}
+ .memory-intro{padding:22px 18px}
+ .memory-intro h2{font-size:17px}
+ .memory-intro>strong{font-size:28px}
+ .memory-cover{height:185px}
+ .task-filters{overflow:auto;flex-wrap:nowrap;padding-bottom:5px}
+ .task-filters button{flex:none}
+ .checkbox-field input{flex:none}
+}
+@media(max-width:380px){.calendar-day{min-height:55px}.calendar-day small{display:none}}
+
+.memory-achievements{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px}
+.memory-achievements span{font-size:11px;padding:5px 8px;background:#edf5ef;color:#4c8068;border-radius:7px;max-width:100%;overflow-wrap:anywhere}
+.memory-photos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:12px 0}
+.memory-photos img{width:100%;height:95px;object-fit:cover;border-radius:10px;background:#eef2ee}
+@media(max-width:760px){.memory-photos img{height:82px}}
+
+
+/* V2.0.1 PHOTO DISPLAY FIX
+   Preserve the uploaded camera photo's complete visible area.
+   No source image is edited; all changes affect how it is displayed. */
+
+/* All covers: contain the entire image instead of cropping the edges. */
+.cover img{
+  object-fit:contain;
+  object-position:center;
+  image-orientation:from-image;
+}
+
+/* List and memory cards keep a calm 16:10 frame, displaying the whole picture
+   with background margins rather than cutting off part of the photo. */
+.event-card .cover.grid-cover,
+.cover.grid-cover,
+.cover.memory-cover{
+  display:grid;
+  place-items:center;
+  width:100%;
+  height:auto;
+  min-height:0;
+  aspect-ratio:16 / 10;
+  overflow:hidden;
+}
+.event-card .cover.grid-cover img,
+.cover.memory-cover img,
+.cover.tile img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+}
+
+/* Event detail should have NO forced 174/198px cropping. */
+.cover.event-cover-large{
+  height:auto;
+  min-height:0;
+  max-height:none;
+  width:100%;
+  padding:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+.cover.event-cover-large:has(img) img{
+  display:block;
+  flex:none;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:min(78vh,820px);
+  object-fit:contain;
+  object-position:center;
+  cursor:zoom-in;
+}
+.cover.event-cover-large:not(:has(img)){
+  min-height:198px;
+}
+.event-cover-tools{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+  margin-top:10px;
+}
+.event-cover-tools span{
+  color:#7b8e80;
+  font-size:11px;
+}
+.event-cover-tools .btn{min-height:36px}
+
+/* Notebook pictures stay at original proportions and may be previewed full screen. */
+.editor-surface img,
+.archive-note img{
+  display:block;
+  width:auto;
+  max-width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+  image-orientation:from-image;
+}
+.archive-note img,
+.editor-surface[contenteditable="false"] img,
+.memory-photos img{
+  cursor:zoom-in;
+}
+.memory-photos img{
+  width:100%;
+  height:110px;
+  border-radius:10px;
+  background:#edf2ef;
+  object-fit:contain;
+  object-position:center;
+}
+.upload-preview{
+  width:100%;
+  height:auto;
+  max-height:260px;
+  object-fit:contain;
+  object-position:center;
+  background:#f0f4f1;
+}
+
+/* Full-size photo viewer: fitted inside viewport, with previous/next controls. */
+body.photo-viewing{overflow:hidden}
+.photo-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:130;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px;
+  background:rgba(10,19,16,.94);
+  backdrop-filter:blur(10px);
+}
+.photo-dialog{
+  width:min(1200px,100%);
+  height:min(94dvh,980px);
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:0;
+}
+.photo-toolbar{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  color:#fff;
+  margin-bottom:9px;
+  padding:0 2px;
+  min-height:38px;
+  font-size:13px;
+}
+.photo-toolbar strong{
+  font-weight:600;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  max-width:min(65vw,670px);
+}
+.photo-toolbar>span{margin-left:auto;color:#bfd0c5;font-size:11px}
+.photo-close{
+  border:1px solid #87978e66;
+  color:#fff;
+  border-radius:9px;
+  padding:8px 12px;
+  background:#ffffff18;
+  font-size:12px;
+}
+.photo-close:hover{background:#ffffff2e}
+.photo-stage{
+  position:relative;
+  flex:1;
+  min-height:0;
+  min-width:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#15211c;
+  border-radius:14px;
+  overflow:hidden;
+}
+.photo-stage img{
+  display:block;
+  flex:none;
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  object-position:center;
+  image-orientation:from-image;
+}
+.photo-step{
+  position:absolute;
+  z-index:2;
+  top:50%;
+  transform:translateY(-50%);
+  width:43px;
+  height:53px;
+  border:0;
+  border-radius:11px;
+  background:#07140f9c;
+  color:#fff;
+  font-size:30px;
+  line-height:1;
+}
+.photo-step.previous{left:9px}
+.photo-step.next{right:9px}
+.photo-step:hover{background:#305b49}
+.photo-tip{
+  flex:none;
+  color:#b1c6b7;
+  text-align:center;
+  font-size:11px;
+  padding:10px 0 0;
+  margin:0;
+}
+@media(max-width:760px){
+ .cover.event-cover-large:has(img) img{max-height:min(66vh,700px)}
+ .cover.event-cover-large:not(:has(img)){min-height:150px}
+ .event-cover-tools span{flex-basis:100%}
+ .memory-photos img{height:96px}
+ .photo-backdrop{padding:7px}
+ .photo-dialog{height:96dvh}
+ .photo-stage{border-radius:10px}
+ .photo-step{width:33px;height:47px;font-size:27px}
+ .photo-toolbar{padding:4px 6px}
+ .photo-toolbar strong{max-width:55vw;font-size:12px}
+}
