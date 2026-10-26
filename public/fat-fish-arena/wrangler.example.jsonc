@@ -1,0 +1,8 @@
+{
+ "$schema":"./node_modules/wrangler/config-schema.json",
+ "name":"fat-fish-arena",
+ "compatibility_date":"2026-10-01",
+ "pages_build_output_dir":"./public",
+ "d1_databases":[{"binding":"FISH_DB","database_name":"fat-fish-db","database_id":"PASTE_YOUR_D1_DATABASE_UUID_HERE"}],
+ "vars":{"SEASON_ID":"S01"}
+}

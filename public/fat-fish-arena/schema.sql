@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS players(id TEXT PRIMARY KEY,fish_name TEXT NOT NULL,owner_name TEXT,show_owner INTEGER NOT NULL DEFAULT 0,video_consent INTEGER NOT NULL DEFAULT 0,token_hash TEXT UNIQUE NOT NULL,ip_hash TEXT NOT NULL,created_at INTEGER NOT NULL);
+CREATE INDEX IF NOT EXISTS idx_players_ip ON players(ip_hash,created_at);
+CREATE TABLE IF NOT EXISTS runs(id TEXT PRIMARY KEY,player_id TEXT NOT NULL REFERENCES players(id),season TEXT NOT NULL,status TEXT NOT NULL CHECK(status IN ('active','won','lost')),state_json TEXT NOT NULL,events_json TEXT NOT NULL,version INTEGER NOT NULL DEFAULT 0,started_at INTEGER NOT NULL,updated_at INTEGER NOT NULL,finished_at INTEGER,steps INTEGER NOT NULL DEFAULT 0,looks INTEGER NOT NULL DEFAULT 0,bumps INTEGER NOT NULL DEFAULT 0,score INTEGER,UNIQUE(player_id,season));
+CREATE INDEX IF NOT EXISTS idx_runs_rank ON runs(season,status,score,finished_at);

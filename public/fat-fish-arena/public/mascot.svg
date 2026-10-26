@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 440" role="img" aria-label="Happy adventurous round fish">
+<defs><linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9bffe4"/><stop offset=".49" stop-color="#3cd8d4"/><stop offset="1" stop-color="#0e83a8"/></linearGradient><linearGradient id="belly" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e0fff2"/><stop offset="1" stop-color="#95e9ed"/></linearGradient><filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-opacity=".22"/></filter></defs>
+<path d="M322 189 C396 135 444 155 415 225 C450 288 394 321 325 268 Z" fill="#42d4d2" stroke="#0b5d78" stroke-width="10" stroke-linejoin="round"/>
+<path d="M200 129 C204 85 255 80 287 133" fill="#42ded1" stroke="#0b5d78" stroke-width="9" stroke-linecap="round"/>
+<path d="M198 324 C216 350 256 365 288 330" fill="#31b9d3" stroke="#0b5d78" stroke-width="9" stroke-linecap="round"/>
+<path d="M93 215 C93 118 172 76 267 91 C366 107 402 190 369 277 C336 355 235 368 160 337 C114 318 92 268 93 215 Z" fill="url(#body)" stroke="#0a5871" stroke-width="10" filter="url(#shadow)"/>
+<ellipse cx="245" cy="265" rx="101" ry="65" fill="url(#belly)" opacity=".96"/>
+<path d="M105 215 C57 197 57 258 111 270" fill="#64eada" stroke="#0a5871" stroke-width="9" stroke-linecap="round"/>
+<ellipse cx="195" cy="191" rx="42" ry="50" fill="#fff" stroke="#0a5871" stroke-width="8"/><ellipse cx="290" cy="188" rx="41" ry="49" fill="#fff" stroke="#0a5871" stroke-width="8"/>
+<circle cx="214" cy="198" r="14" fill="#071e34"/><circle cx="301" cy="195" r="14" fill="#071e34"/><circle cx="220" cy="191" r="5" fill="#fff"/><circle cx="307" cy="189" r="5" fill="#fff"/>
+<ellipse cx="171" cy="250" rx="22" ry="12" fill="#ff9d98" opacity=".82"/><ellipse cx="335" cy="247" rx="21" ry="11" fill="#ff9d98" opacity=".82"/>
+<path d="M237 240 Q257 271 275 240" fill="none" stroke="#0a5871" stroke-width="9" stroke-linecap="round"/>
+<path d="M165 138 Q251 100 327 147" fill="none" stroke="#c9fff3" stroke-width="10" stroke-linecap="round" opacity=".75"/>
+<path d="M256 89 L271 58 L285 91" fill="#ffc960" stroke="#0a5871" stroke-width="8" stroke-linejoin="round"/><circle cx="271" cy="52" r="12" fill="#ffe27b"/>
+<circle cx="100" cy="89" r="13" fill="none" stroke="#44cebf" stroke-width="5"/><circle cx="385" cy="102" r="8" fill="#ffd46b"/><path d="M394 328 L406 347 L418 328 L406 309 Z" fill="#ffd46b"/>
+</svg>
